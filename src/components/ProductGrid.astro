@@ -1,0 +1,53 @@
+---
+import ProductCard from './ProductCard.astro';
+
+const { productos } = Astro.props;
+---
+
+{productos.length > 0 ? (
+  <ul class="product-grid" role="list">
+    {productos.map((producto) => (
+      <li>
+        <ProductCard producto={producto} />
+      </li>
+    ))}
+  </ul>
+) : (
+  <div class="product-grid__empty">
+    <p>No hay productos en esta categoría todavía.</p>
+  </div>
+)}
+
+<style>
+  /* :global porque renderGrid en catalogo.astro recrea este elemento via innerHTML
+     y los elementos dinámicos no reciben el atributo data-astro-cid del scoping */
+  :global(.product-grid) {
+    list-style: none;
+    columns: 3;
+    column-gap: var(--space-6);
+  }
+
+  :global(.product-grid > li) {
+    break-inside: avoid;
+    margin-bottom: var(--space-6);
+  }
+
+  .product-grid__empty {
+    text-align: center;
+    padding-block: var(--space-16);
+    color: var(--text-muted);
+    font-size: var(--text-lg);
+  }
+
+  @media (max-width: 768px) {
+    :global(.product-grid) {
+      columns: 2;
+    }
+  }
+
+  @media (max-width: 480px) {
+    :global(.product-grid) {
+      columns: 1;
+    }
+  }
+</style>

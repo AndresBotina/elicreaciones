@@ -1,0 +1,74 @@
+[
+  {
+    "id": "bolso-mochila-001",
+    "nombre": "Mochila boho",
+    "categoria": "bolsos",
+    "precio": 95000,
+    "moneda": "COP",
+    "descripcion": "Mochila tejida a crochet en hilo de algodón. Ideal para el día a día. Disponible en varios colores.",
+    "colores": ["crema", "verde salvia", "terracota"],
+    "imagenes": [],
+    "disponible": true,
+    "destacado": true
+  },
+  {
+    "id": "llavero-corazon-001",
+    "nombre": "Llavero corazón",
+    "categoria": "llaveros",
+    "precio": 12000,
+    "moneda": "COP",
+    "descripcion": "Llavero tejido a crochet en hilo algodón. Disponible en varios colores.",
+    "colores": ["rosa", "verde", "azul", "rojo"],
+    "imagenes": [],
+    "disponible": true,
+    "destacado": true
+  },
+  {
+    "id": "blusa-verano-001",
+    "nombre": "Blusa calado verano",
+    "categoria": "blusas",
+    "precio": 75000,
+    "moneda": "COP",
+    "descripcion": "Blusa de crochet con calado floral. Perfecta para días cálidos. Tallas S, M y L.",
+    "colores": ["blanco", "beige"],
+    "imagenes": [],
+    "disponible": true,
+    "destacado": true
+  },
+  {
+    "id": "mona-flores-001",
+    "nombre": "Moña flores",
+    "categoria": "moñas",
+    "precio": 18000,
+    "moneda": "COP",
+    "descripcion": "Moña tejida a crochet con motivo floral. Para el cabello o como accesorio decorativo.",
+    "colores": ["lila", "amarillo", "blanco"],
+    "imagenes": [],
+    "disponible": true,
+    "destacado": false
+  },
+  {
+    "id": "amigurumi-oso-001",
+    "nombre": "Osito amigurumi",
+    "categoria": "amigurumis",
+    "precio": 45000,
+    "moneda": "COP",
+    "descripcion": "Osito tejido a crochet, relleno de fibra hipoalergénica. Perfecto como regalo.",
+    "colores": ["café", "crema", "gris"],
+    "imagenes": [],
+    "disponible": true,
+    "destacado": true
+  },
+  {
+    "id": "cartera-clutch-001",
+    "nombre": "Clutch tejido",
+    "categoria": "bolsos",
+    "precio": 55000,
+    "moneda": "COP",
+    "descripcion": "Cartera clutch tejida a crochet con cierre. Elegante y artesanal.",
+    "colores": ["dorado", "negro", "crema"],
+    "imagenes": [],
+    "disponible": true,
+    "destacado": false
+  }
+]

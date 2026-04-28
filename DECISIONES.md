@@ -85,7 +85,7 @@ automático y deploy continuo desde Git.
 
 ## ADR-003 — Almacenamiento de imágenes: Cloudinary
 **Fecha:** 27 de abril de 2026
-**Estado:** Aceptado
+**Estado:** Reemplazado por ADR-014
 
 ### Contexto
 Las fotos de productos de crochet son el contenido principal de la web.
@@ -354,3 +354,108 @@ Copiar y rellenar al añadir una nueva entrada:
 ### Consecuencias
 ¿Qué implica esta decisión a futuro?
 ```
+## ADR-010 — Redirección estética completa: Femenina nostálgica
+**Fecha:** 27 de abril de 2026
+**Estado:** Aceptado — reemplaza ADR-007 y ADR-009 en lo que respecta a paleta y tipografía
+
+### Contexto
+Se presentaron 3 propuestas visuales completas a la emprendedora:
+1. Editorial slow fashion
+2. Femenina nostálgica
+3. Boho moderna minimal
+
+El primer boceto implementado (Boho Salvia + Playfair Display) se sintió
+genérico y sin personalidad propia. La emprendedora revisó las 3 propuestas
+y eligió una dirección visual completamente diferente.
+
+### Decisión
+**Paleta oficial: Rosa suave**
+
+| Token | Hex | Uso |
+|---|---|---|
+| `--color-base` | `#FDF4F0` | Fondo principal |
+| `--color-light` | `#F4C7C3` | Fondos secundarios, bordes |
+| `--color-mid` | `#E89BA3` | Elementos de apoyo, iconos |
+| `--color-accent` | `#B56576` | CTAs, highlights |
+| `--color-dark` | `#6B3547` | Textos principales, navbar |
+
+**Tipografías oficiales:**
+- `DM Serif Display` — títulos y headings (serif, Google Fonts)
+- `Caveat` — acentos manuscritos ocasionales (Google Fonts)
+- `Inter` — cuerpo de texto y UI (sans-serif, Google Fonts)
+
+**Dirección estética: Femenina nostálgica**
+- Voz de marca: cálida, cercana, dulce sin empalagar
+- Referencias: Sezane, Doen, Reformation
+- Recursos visuales: acentos manuscritos rotados, divisores orgánicos,
+  marcos tipo polaroid, iconos dibujados a mano
+
+### Razones
+- La emprendedora se identificó emocionalmente con esta dirección
+- El rosa suave conecta directamente con el público objetivo femenino
+  sin caer en lo genérico
+- DM Serif Display tiene más carácter y ternura que Playfair Display,
+  más alineado con la voz cálida del emprendimiento
+- Caveat añade el toque artesanal/manuscrito que diferencia la marca
+  sin perder legibilidad
+- Las referencias (Sezane, Doen, Reformation) son marcas de moda
+  artesanal con identidad visual fuerte y aspiracional
+
+### Alternativas consideradas
+- **Editorial slow fashion:** demasiado fría y editorial para un
+  emprendimiento familiar y cercano.
+- **Boho moderna minimal:** fue el primer boceto implementado.
+  Se descartó por sentirse genérico y sin personalidad propia.
+
+### Consecuencias
+- Todo el CSS debe actualizarse: tokens de color y fuentes
+- El CLI debe reemplazar Playfair Display por DM Serif Display
+- Caveat se usa con criterio: frases cortas, nunca cuerpo de texto
+- La implementación anterior (Boho Salvia) se descarta completamente
+- Los recursos visuales (polaroid, manuscritos) requieren criterio
+  de diseño cuidadoso para no sobrecargar la interfaz
+---
+
+## ADR-014 — Almacenamiento de imágenes: migración de Cloudinary a Vercel Blob
+**Fecha:** 28 de abril de 2026
+**Estado:** Aceptado
+
+### Contexto
+Cloudinary fue elegido inicialmente (ADR-003) por sus transformaciones
+automáticas de imagen por URL. Al intentar usarlo en la primera fase real
+de carga de fotos, surgieron problemas de acceso público: las imágenes no
+se servían correctamente desde el plan gratuito bajo las condiciones de uso
+del proyecto.
+
+### Decisión
+Reemplazar Cloudinary por **Vercel Blob** como almacenamiento de imágenes.
+
+- Paquete: `@vercel/blob`
+- Las fotos se suben desde el dashboard de Vercel o con la CLI
+- Las URLs resultantes son directas y públicas sin configuración adicional
+- El token `BLOB_READ_WRITE_TOKEN` se usa solo para subir — no se expone en el frontend
+- Helper en `src/lib/images.js` para que los componentes manejen arrays vacíos de forma segura
+
+### Razones
+- Integración nativa con Vercel (mismo proveedor que el hosting)
+- Cero configuración adicional: las URLs son públicas por defecto
+- Plan gratuito generoso (5 GB) sin restricciones de acceso público
+- Elimina una dependencia externa (una cuenta menos que mantener)
+- El flujo de subida desde el dashboard de Vercel es más simple que Cloudinary
+
+### Alternativas consideradas
+- **Mantener Cloudinary y resolver el problema de acceso:** requería
+  investigación y configuración adicional sin garantía de resolución en
+  el plan gratuito.
+- **AWS S3 + CloudFront:** más control pero sobreingeniería para el
+  volumen actual; requiere tarjeta de crédito y gestión de costos.
+- **Uploadcare:** buena opción con transformaciones por URL, pero añade
+  otra dependencia externa y cuenta adicional.
+
+### Consecuencias
+- Sin transformaciones de URL disponibles — las fotos deben optimizarse
+  antes de subir (≤ 800px de ancho, JPEG o WebP, ≤ 200 KB idealmente)
+- El campo `imagenes` en `productos.json` quedará como `[]` hasta completar
+  la carga de fotos en Vercel Blob
+- ADR-003 queda marcado como reemplazado
+- Los componentes ya manejan `imagenes: []` mostrando placeholder automáticamente

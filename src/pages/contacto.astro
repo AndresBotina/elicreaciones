@@ -1,0 +1,247 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { CONFIG } from '../config.js';
+---
+
+<BaseLayout
+  title="Contacto"
+  description="Contáctanos por WhatsApp para pedidos y personalizaciones. Enviamos a todo Colombia. Aceptamos Nequi, Daviplata, Bancolombia y efectivo."
+>
+  <div class="contacto-page">
+    <div class="container">
+      <header class="contacto-page__header">
+        <h1 class="contacto-page__title">Hablemos</h1>
+        <p class="contacto-page__subtitle">
+          ¿Quieres una pieza personalizada o tienes alguna pregunta? Escríbenos por WhatsApp y con gusto te atendemos.
+        </p>
+      </header>
+
+      <div class="contacto-page__grid">
+        <div class="contacto-page__info">
+          <div class="contacto-page__whatsapp">
+            <WhatsAppButton label="Escribir por WhatsApp" />
+          </div>
+
+          <div class="contact-details">
+            <div class="contact-details__item">
+              <span class="contact-details__label">WhatsApp</span>
+              <a href={`https://wa.me/${CONFIG.whatsapp.number.replace(/\D/g, '')}`} class="contact-details__value" target="_blank" rel="noopener noreferrer">
+                {CONFIG.whatsapp.number}
+              </a>
+            </div>
+            <div class="contact-details__item">
+              <span class="contact-details__label">Envíos</span>
+              <span class="contact-details__value">A todo Colombia</span>
+            </div>
+            <div class="contact-details__item">
+              <span class="contact-details__label">Pagos</span>
+              <span class="contact-details__value">Nequi, Daviplata, Bancolombia y efectivo</span>
+            </div>
+          </div>
+
+          <div class="contacto-page__social">
+            <p class="contacto-page__social-label">También puedes encontrarnos en</p>
+            <div class="contacto-page__social-links">
+              <a href={CONFIG.social.instagram} target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Instagram de Eli Creaciones">
+                Instagram
+              </a>
+              <a href={CONFIG.social.facebook} target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Facebook de Eli Creaciones">
+                Facebook
+              </a>
+              <a href={CONFIG.social.tiktok} target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="TikTok de Eli Creaciones">
+                TikTok
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contacto-page__form">
+          <h2 class="contacto-page__form-title">Envíanos un mensaje</h2>
+          <form action="https://formspree.io/f/placeholder" method="POST" class="contact-form">
+            <div class="contact-form__group">
+              <label for="nombre" class="contact-form__label">Tu nombre</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                class="contact-form__input"
+                placeholder="Ej: María García"
+                required
+              />
+            </div>
+            <div class="contact-form__group">
+              <label for="mensaje" class="contact-form__label">Mensaje</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                class="contact-form__textarea"
+                rows="5"
+                placeholder="Cuéntanos en qué te podemos ayudar..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary contact-form__submit">
+              Enviar mensaje
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <WhatsAppButton variant="floating" />
+</BaseLayout>
+
+<style>
+  .contacto-page {
+    padding-block: var(--space-16);
+  }
+
+  .contacto-page__header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+  }
+
+  .contacto-page__title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+  }
+
+  .contacto-page__subtitle {
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+    max-width: 540px;
+    margin-inline: auto;
+  }
+
+  .contacto-page__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: start;
+    max-width: 900px;
+    margin-inline: auto;
+  }
+
+  .contacto-page__whatsapp {
+    margin-bottom: var(--space-8);
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
+
+  .contact-details__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .contact-details__label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .contact-details__value {
+    font-size: var(--text-base);
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  a.contact-details__value:hover {
+    color: var(--color-accent);
+  }
+
+  .contacto-page__social-label {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .contacto-page__social-links {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .social-pill {
+    padding: var(--space-2) var(--space-4);
+    border: 1.5px solid var(--color-light);
+    border-radius: 9999px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text);
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  }
+
+  .social-pill:hover {
+    background-color: var(--color-dark);
+    border-color: var(--color-dark);
+    color: white;
+  }
+
+  .contacto-page__form-title {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-6);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .contact-form__group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .contact-form__label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .contact-form__input,
+  .contact-form__textarea {
+    border: 1.5px solid var(--color-light);
+    border-radius: 8px;
+    padding: var(--space-3) var(--space-4);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--text);
+    background-color: white;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+
+  .contact-form__input:focus,
+  .contact-form__textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+  }
+
+  .contact-form__submit {
+    align-self: flex-start;
+  }
+
+  @media (max-width: 768px) {
+    .contacto-page__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+    }
+
+    .contacto-page__title {
+      font-size: var(--text-3xl);
+    }
+  }
+</style>

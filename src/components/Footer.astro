@@ -1,0 +1,142 @@
+---
+import { CONFIG } from '../config.js';
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href="/" class="footer__logo">{CONFIG.site.name}</a>
+      <p class="footer__tagline">Hecho a mano en Mocoa, Colombia</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Navegación del pie de página">
+      <ul class="footer__nav-list">
+        <li><a href="/" class="footer__nav-link">Inicio</a></li>
+        <li><a href="/catalogo" class="footer__nav-link">Catálogo</a></li>
+        <li><a href="/nosotras" class="footer__nav-link">Nosotras</a></li>
+        <li><a href="/contacto" class="footer__nav-link">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer__social">
+      <a
+        href={CONFIG.social.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer__social-link"
+        aria-label="Visitar Instagram de Eli Creaciones"
+      >
+        Instagram
+      </a>
+      <a
+        href={CONFIG.social.facebook}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer__social-link"
+        aria-label="Visitar Facebook de Eli Creaciones"
+      >
+        Facebook
+      </a>
+      <a
+        href={CONFIG.social.tiktok}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer__social-link"
+        aria-label="Visitar TikTok de Eli Creaciones"
+      >
+        TikTok
+      </a>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <p>© 2025 Eli Creaciones · Hecho a mano en Mocoa, Colombia · Todos los derechos reservados</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    margin-top: var(--space-24);
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: var(--space-12);
+    align-items: start;
+    padding-block: var(--space-12);
+  }
+
+  .footer__logo {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-base);
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+
+  .footer__tagline {
+    font-family: var(--font-handwritten);
+    font-size: var(--text-base);
+    color: var(--color-mid);
+  }
+
+  .footer__nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .footer__nav-link {
+    font-size: var(--text-sm);
+    color: var(--color-light);
+    transition: color 0.2s;
+  }
+
+  .footer__nav-link:hover {
+    color: var(--color-accent);
+  }
+
+  .footer__social {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .footer__social-link {
+    font-size: var(--text-sm);
+    color: var(--color-light);
+    transition: color 0.2s;
+  }
+
+  .footer__social-link:hover {
+    color: var(--color-accent);
+  }
+
+  .footer__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-block: var(--space-4);
+    text-align: center;
+  }
+
+  .footer__bottom p {
+    font-size: var(--text-xs);
+    color: var(--color-mid);
+  }
+
+  @media (max-width: 768px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .footer__social {
+      flex-direction: row;
+      gap: var(--space-6);
+    }
+  }
+</style>

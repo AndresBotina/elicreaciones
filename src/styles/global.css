@@ -1,0 +1,142 @@
+:root {
+  /* Paleta Rosa suave */
+  --color-base:    #FDF4F0;
+  --color-light:   #F4C7C3;
+  --color-mid:     #E89BA3;
+  --color-accent:  #B56576;
+  --color-dark:    #6B3547;
+
+  /* Semánticos */
+  --bg:            var(--color-base);
+  --bg-secondary:  var(--color-light);
+  --text:          var(--color-dark);
+  --text-muted:    var(--color-mid);
+  --cta:           var(--color-accent);
+  --cta-hover:     #9e4f63;
+
+  /* Tipografía */
+  --font-heading:     'DM Serif Display', Georgia, serif;
+  --font-handwritten: 'Caveat', cursive;
+  --font-body:        'Inter', system-ui, sans-serif;
+
+  /* Escala tipográfica */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+
+  /* Espaciado */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--text);
+  background-color: var(--bg);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: 9999px;
+  font-size: var(--text-base);
+  font-weight: 500;
+  border: 2px solid transparent;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--cta);
+  color: white;
+  border-color: var(--cta);
+}
+
+.btn-primary:hover {
+  background-color: var(--cta-hover);
+  border-color: var(--cta-hover);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text);
+  border-color: var(--text);
+}
+
+.btn-secondary:hover {
+  background-color: var(--text);
+  color: var(--bg);
+}
+
+.btn-whatsapp {
+  background-color: #25D366;
+  color: white;
+  border-color: #25D366;
+}
+
+.btn-whatsapp:hover {
+  background-color: #1da851;
+  border-color: #1da851;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-inline: var(--space-4);
+  }
+}

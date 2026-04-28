@@ -30,7 +30,7 @@ de productos que redirige a WhatsApp y redes sociales.
 |---|---|
 | Framework | Astro (último estable) |
 | Estilos | CSS puro con variables (sin Tailwind, sin frameworks CSS) |
-| Imágenes | Cloudinary (URLs externas, no archivos en el repo) |
+| Imágenes | Vercel Blob (URLs externas, no archivos en el repo) |
 | Deploy | Vercel (automático desde GitHub) |
 | Lenguaje | JavaScript puro (sin TypeScript) |
 | Datos | `src/data/productos.json` (sin DB) |
@@ -76,15 +76,15 @@ manualidades-eliza/
 
 ## 4. Identidad visual
 
-### Paleta: Boho Salvia
+### Paleta oficial: Rosa suave
 
 ```css
 :root {
-  --color-base:    #F4F1E8;  /* fondo principal */
-  --color-light:   #C5D1B8;  /* fondos secundarios, bordes */
-  --color-mid:     #8FA58A;  /* elementos de apoyo, iconos */
-  --color-accent:  #D4A574;  /* CTAs, highlights, hover */
-  --color-dark:    #4A5D47;  /* textos principales, navbar */
+  --color-base:    #FDF4F0;  /* fondo principal */
+  --color-light:   #F4C7C3;  /* fondos secundarios, bordes */
+  --color-mid:     #E89BA3;  /* elementos de apoyo, iconos */
+  --color-accent:  #B56576;  /* CTAs, highlights, hover */
+  --color-dark:    #6B3547;  /* textos principales, navbar */
 
   /* Semánticos */
   --bg:            var(--color-base);
@@ -92,54 +92,35 @@ manualidades-eliza/
   --text:          var(--color-dark);
   --text-muted:    var(--color-mid);
   --cta:           var(--color-accent);
-  --cta-hover:     #c4925e;
+  --cta-hover:     #9e4f63;
 }
 ```
 
-### Tipografía
+### Tipografía oficial
 
 ```css
-/* Importar en BaseLayout.astro o global.css */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Caveat:wght@400;600&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  --font-heading: 'Playfair Display', Georgia, serif;
-  --font-body:    'Inter', system-ui, sans-serif;
+  --font-heading:    'DM Serif Display', Georgia, serif;
+  --font-handwritten:'Caveat', cursive;
+  --font-body:       'Inter', system-ui, sans-serif;
 }
 ```
 
-### Escala tipográfica
+### Reglas de uso tipográfico
+- `--font-heading`: h1, h2, h3, nombre de marca, títulos de sección
+- `--font-handwritten`: frases cortas de acento, nunca párrafos ni UI.
+  Usar con moderación — máximo 1-2 apariciones por página
+- `--font-body`: todo el resto — párrafos, botones, labels, nav
 
-```css
-:root {
-  --text-xs:   0.75rem;   /* 12px — labels, badges */
-  --text-sm:   0.875rem;  /* 14px — captions, metadata */
-  --text-base: 1rem;      /* 16px — cuerpo */
-  --text-lg:   1.125rem;  /* 18px — lead text */
-  --text-xl:   1.25rem;   /* 20px — subtítulos */
-  --text-2xl:  1.5rem;    /* 24px — h3 */
-  --text-3xl:  1.875rem;  /* 30px — h2 */
-  --text-4xl:  2.25rem;   /* 36px — h1 móvil */
-  --text-5xl:  3rem;      /* 48px — h1 desktop */
-}
-```
-
-### Espaciado
-
-```css
-:root {
-  --space-1:  0.25rem;
-  --space-2:  0.5rem;
-  --space-3:  0.75rem;
-  --space-4:  1rem;
-  --space-6:  1.5rem;
-  --space-8:  2rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-24: 6rem;
-}
-```
-
+### Dirección estética: Femenina nostálgica
+- Referencias visuales: Sezane, Doen, Reformation
+- Recursos permitidos: acentos manuscritos rotados (con Caveat),
+  divisores orgánicos (SVG ondulado entre secciones), marcos tipo
+  polaroid en fotos (sombra + borde blanco grueso), iconos dibujados
+  a mano (SVG custom o librería como Phosphor Icons en stroke fino)
+- Voz visual: cálida, cercana, femenina sin ser infantil
 ---
 
 ## 5. Datos: productos.json
@@ -166,9 +147,12 @@ Estructura de cada producto:
 **Categorías válidas:** `llaveros`, `bolsos`, `blusas`, `carteras`, `amigurumis`, `accesorios`
 
 **Notas sobre imágenes:**
-- Siempre usar URLs de Cloudinary, nunca archivos locales en `/public`
-- Formato recomendado en la URL: agregar `/f_auto,q_auto,w_800/` para optimización automática
-- Ejemplo: `https://res.cloudinary.com/[CLOUD_NAME]/image/upload/f_auto,q_auto,w_800/v1/manualidades-eliza/nombre-imagen`
+- Siempre usar URLs de Vercel Blob, nunca archivos locales en `/public`
+- Las URLs se obtienen al subir las fotos desde el dashboard de Vercel o con su CLI
+- Formato de URL resultante: `https://[id].public.blob.vercel-storage.com/[archivo]`
+- No hay transformaciones de URL — optimizar las fotos antes de subir (≤ 800px de ancho, JPEG o WebP)
+- El campo `imagenes` puede ser `[]` mientras las fotos no están subidas; los componentes muestran el placeholder automáticamente
+- Helper disponible en `src/lib/images.js`: `getFirstImage(imagenes)` → URL o `null`
 
 ---
 
@@ -246,10 +230,9 @@ export const CONFIG = {
     facebook:  'https://facebook.com/[usuario]',
     tiktok:    'https://tiktok.com/@[usuario]',
   },
-  cloudinary: {
-    cloudName: '[CLOUD_NAME]',
-    baseUrl:   'https://res.cloudinary.com/[CLOUD_NAME]/image/upload',
-    transform: 'f_auto,q_auto,w_800',
+  blob: {
+    // Token configurado en .env como BLOB_READ_WRITE_TOKEN — solo para subir fotos, no para el frontend
+    storeId: 'elicreaciones',
   },
   site: {
     name:        'ManualidadesEliza',

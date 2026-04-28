@@ -79,24 +79,31 @@ El detalle del porqué de cada decisión está en `DECISIONES.md`.
 
 ## 5. Identidad visual
 
-### Paleta elegida: Boho Salvia ✅
+### Paleta oficial: Rosa suave ✅
 
 | Token | Hex | Uso |
 |---|---|---|
-| `--color-base` | `#F4F1E8` | Fondo principal |
-| `--color-light` | `#C5D1B8` | Fondos secundarios, bordes |
-| `--color-mid` | `#8FA58A` | Elementos de apoyo, iconos |
-| `--color-accent` | `#D4A574` | CTAs, highlights |
-| `--color-dark` | `#4A5D47` | Textos, navbar |
+| `--color-base` | `#FDF4F0` | Fondo principal |
+| `--color-light` | `#F4C7C3` | Fondos secundarios, bordes |
+| `--color-mid` | `#E89BA3` | Elementos de apoyo, iconos |
+| `--color-accent` | `#B56576` | CTAs, highlights |
+| `--color-dark` | `#6B3547` | Textos principales, navbar |
 
-### Tipografía elegida ✅
-- **Playfair Display** — títulos y headings (serif, Google Fonts)
+### Tipografía oficial ✅
+- **DM Serif Display** — títulos y headings (serif, Google Fonts)
+- **Caveat** — acentos manuscritos ocasionales (Google Fonts)
 - **Inter** — cuerpo de texto y UI (sans-serif, Google Fonts)
 
-### Logo ✅
-Logo existente aportado por la emprendedora. Pendiente exportar en SVG
-o PNG alta resolución y verificar compatibilidad con la paleta.
+### Dirección estética: Femenina nostálgica ✅
+- **Voz de marca:** cálida, cercana, dulce sin empalagar
+- **Referencias:** Sezane, Doen, Reformation
+- **Recursos visuales:** acentos manuscritos rotados, divisores
+  orgánicos, marcos tipo polaroid, iconos dibujados a mano
 
+### Logo ✅
+Logo existente aportado por la emprendedora. Pendiente exportar en
+SVG o PNG con fondo transparente y verificar compatibilidad con la
+nueva paleta Rosa suave.
 ---
 
 ## 6. Estructura de páginas (preliminar)
@@ -134,27 +141,27 @@ Este proyecto se desarrolla con dos herramientas coordinadas:
 
 ## 8. Estado actual
 
-**Fase:** Planificación (no se programa todavía)
+**Fase:** Implementación inicial
 
 ### Decisiones resueltas ✅
 - Stack completo (Astro, Vercel, GitHub, Cloudinary, Gmail)
-- Paleta de color: Boho Salvia
-- Tipografía: Playfair Display + Inter
+- Paleta de color: Rosa suave (#FDF4F0 → #6B3547)
+- Dirección estética: Femenina nostálgica
+- Tipografía: DM Serif Display + Caveat + Inter
 - Logo: existente (aportado por la emprendedora)
+- Estructura de páginas: 4 páginas (Inicio, Catálogo, Sobre nosotras, Contacto)
+- Textos del sitio: definidos en TEXTOS.md
 
 ### Decisiones pendientes
-- Nombre exacto del dominio y dónde comprarlo
-- Estructura definitiva de páginas
-- Textos del sitio (los redacta la emprendedora con apoyo)
+- Dominio propio (por ahora: subdominio Vercel)
+- Usernames exactos de redes sociales
+- Fotos de productos subidas a Cloudinary
+- Logo exportado en PNG fondo transparente
 
-### Tareas previas a programar
-- Crear cuenta dedicada de Gmail para el negocio
-- Crear cuentas en GitHub, Vercel y Cloudinary con ese correo
-- Recolectar 10-15 fotos de productos representativos
-- Recopilar usernames exactos de Instagram, Facebook, TikTok
-- Confirmar número de WhatsApp Business con código de país
-- Exportar logo en SVG o PNG alta resolución
-- Generar `CLAUDE.md` con instrucciones técnicas para el CLI
+### Tareas en curso
+- Reimplementación visual completa con nueva paleta y tipografías
+- Verificar cloud name en Cloudinary
+- Subir primeras fotos reales (una por categoría)
 
 ---
 

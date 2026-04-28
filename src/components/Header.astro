@@ -1,0 +1,147 @@
+---
+import { CONFIG } from '../config.js';
+
+const navLinks = [
+  { href: '/', label: 'Inicio' },
+  { href: '/catalogo', label: 'Catálogo' },
+  { href: '/nosotras', label: 'Nosotras' },
+  { href: '/contacto', label: 'Contacto' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="header">
+  <div class="container header__inner">
+    <a href="/" class="header__logo" aria-label="Ir al inicio de Eli Creaciones">
+      {CONFIG.site.name}
+    </a>
+
+    <button class="header__menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="nav-menu" class="header__nav" aria-label="Navegación principal">
+      <ul class="header__nav-list">
+        {navLinks.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class:list={['header__nav-link', { 'header__nav-link--active': currentPath === href }]}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .header__logo {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-base);
+    letter-spacing: -0.02em;
+  }
+
+  .header__nav-list {
+    list-style: none;
+    display: flex;
+    gap: var(--space-8);
+  }
+
+  .header__nav-link {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+    padding-bottom: var(--space-1);
+    border-bottom: 2px solid transparent;
+  }
+
+  .header__nav-link:hover,
+  .header__nav-link--active {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+  }
+
+  .header__menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: var(--space-2);
+    cursor: pointer;
+  }
+
+  .header__menu-btn span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-base);
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  @media (max-width: 768px) {
+    .header__menu-btn {
+      display: flex;
+    }
+
+    .header__nav {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background-color: var(--color-dark);
+      padding: var(--space-4) var(--space-6);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .header__nav.is-open {
+      display: block;
+    }
+
+    .header__nav-list {
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .header__nav-link {
+      font-size: var(--text-base);
+    }
+  }
+</style>
+
+<script>
+  const menuBtn = document.querySelector('.header__menu-btn');
+  const nav = document.querySelector('.header__nav');
+
+  menuBtn?.addEventListener('click', () => {
+    const isOpen = nav?.classList.toggle('is-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+</script>

@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+---
+
+<BaseLayout
+  title="Sobre nosotras"
+  description="Conoce la historia de Eli Creaciones, emprendimiento de crochet nacido en Mocoa, Putumayo. Hecho a mano con amor desde la infancia."
+>
+  <div class="nosotras-page">
+    <div class="container">
+      <div class="nosotras-page__grid">
+        <div class="nosotras-page__image">
+          <img
+            src="https://res.cloudinary.com/elicreaciones/image/upload/v1777381661/eli_kylxqp.jpg"
+            alt="Eliza, creadora de Eli Creaciones"
+            class="nosotras-page__image-placeholder"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="nosotras-page__content">
+          <h1 class="nosotras-page__title">De las manos de mi abuela a las tuyas</h1>
+          <div class="nosotras-page__body">
+            <p>
+              Eli Creaciones nació de un recuerdo de infancia: las tardes aprendiendo los puntos básicos del crochet con mi abuela. Esa semilla creció, y hoy lo que empezó como hobby se convirtió en una forma de vida.
+            </p>
+            <p>
+              Cada pieza que hago lleva tiempo, dedicación y mucho cariño. No hay dos iguales. Trabajo desde Mocoa, Putumayo, y envío a todo el país porque creo que el arte hecho a mano merece llegar lejos.
+            </p>
+            <p>
+              Mi meta es simple: enamorarte con cada puntada.
+            </p>
+          </div>
+
+          <div class="nosotras-page__values">
+            <div class="value-card">
+              <span class="value-card__icon" aria-hidden="true">✦</span>
+              <h3>Hecho a mano</h3>
+              <p>Cada pieza es única, tejida puntada a puntada con hilo de calidad.</p>
+            </div>
+            <div class="value-card">
+              <span class="value-card__icon" aria-hidden="true">✦</span>
+              <h3>Personalizable</h3>
+              <p>¿Tienes un color o diseño en mente? Podemos hacerlo realidad.</p>
+            </div>
+            <div class="value-card">
+              <span class="value-card__icon" aria-hidden="true">✦</span>
+              <h3>Envíos a Colombia</h3>
+              <p>Desde Mocoa, Putumayo, tu pedido llega a cualquier rincón del país.</p>
+            </div>
+          </div>
+
+          <WhatsAppButton label="Escríbenos" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <WhatsAppButton variant="floating" />
+</BaseLayout>
+
+<style>
+  .nosotras-page {
+    padding-block: var(--space-16);
+  }
+
+  .nosotras-page__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  .nosotras-page__image-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: 16px;
+    display: block;
+    object-fit: cover;
+  }
+
+  .nosotras-page__title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    margin-bottom: var(--space-8);
+    line-height: 1.1;
+  }
+
+  .nosotras-page__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    color: var(--text);
+    font-size: var(--text-lg);
+    line-height: 1.7;
+    margin-bottom: var(--space-12);
+  }
+
+  .nosotras-page__values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+
+  .value-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .value-card__icon {
+    color: var(--color-accent);
+    font-size: var(--text-lg);
+  }
+
+  .value-card h3 {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    font-weight: 600;
+  }
+
+  .value-card p {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .nosotras-page__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .nosotras-page__image-placeholder {
+      aspect-ratio: 4 / 3;
+    }
+
+    .nosotras-page__title {
+      font-size: var(--text-3xl);
+    }
+
+    .nosotras-page__values {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
