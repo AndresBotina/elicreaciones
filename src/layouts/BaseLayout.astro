@@ -48,7 +48,7 @@ const pageTitle = title ? `${title} | ${CONFIG.site.name}` : CONFIG.site.name;
             }
           });
         },
-        { threshold: 0.1 }
+        { threshold: 0.05 }
       );
 
       document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
