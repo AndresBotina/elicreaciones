@@ -9,6 +9,10 @@
   },
   "dependencies": {
     "@vercel/blob": "^2.3.3",
-    "astro": "^4.16.18"
+    "astro": "^4.16.18",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "@types/qrcode": "^1.5.6"
   }
 }
