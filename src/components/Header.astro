@@ -43,25 +43,29 @@ const currentPath = Astro.url.pathname;
 <style>
   .header {
     position: sticky;
-    top: 0;
+    top: var(--space-4);
     z-index: 100;
     background-color: var(--color-accent);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-inline: auto;
+    width: calc(100% - var(--space-12));
+    max-width: 1200px;
+    border-radius: 100px; /* Estilo píldora completo */
+    box-shadow: 0 4px 20px rgba(181, 101, 118, 0.2);
+    padding-inline: var(--space-8);
   }
 
   .header__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
+    height: 72px; /* Grosor aumentado ligeramente */
   }
 
   .header__logo {
-    font-family: var(--font-heading);
+    font-family: var(--font-handwritten);
     font-size: var(--text-xl);
     font-weight: 700;
     color: var(--color-base);
-    letter-spacing: -0.02em;
   }
 
   .header__nav-list {
@@ -78,13 +82,11 @@ const currentPath = Astro.url.pathname;
     letter-spacing: 0.05em;
     transition: color 0.2s;
     padding-bottom: var(--space-1);
-    border-bottom: 2px solid transparent;
   }
 
   .header__nav-link:hover,
   .header__nav-link--active {
-    color: var(--color-accent);
-    border-bottom-color: var(--color-accent);
+    color: var(--color-base);
   }
 
   .header__menu-btn {
@@ -111,27 +113,35 @@ const currentPath = Astro.url.pathname;
     }
 
     .header__nav {
-      display: none;
       position: absolute;
-      top: 64px;
+      top: calc(100% + var(--space-3));
       left: 0;
       right: 0;
       background-color: var(--color-accent);
-      padding: var(--space-4) var(--space-6);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: var(--space-6);
+      box-shadow: 0 8px 24px rgba(107, 53, 71, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
     }
 
     .header__nav.is-open {
-      display: block;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s;
     }
 
     .header__nav-list {
       flex-direction: column;
-      gap: var(--space-4);
+      gap: var(--space-5);
+      align-items: center;
     }
 
     .header__nav-link {
-      font-size: var(--text-base);
+      font-size: var(--text-lg);
     }
   }
 </style>
@@ -142,6 +152,13 @@ const currentPath = Astro.url.pathname;
 
   menuBtn?.addEventListener('click', () => {
     const isOpen = nav?.classList.toggle('is-open');
-    menuBtn.setAttribute('aria-expanded', String(isOpen));
+    menuBtn.setAttribute('aria-expanded', String(!!isOpen));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!nav?.contains(e.target) && !menuBtn?.contains(e.target)) {
+      nav?.classList.remove('is-open');
+      menuBtn?.setAttribute('aria-expanded', 'false');
+    }
   });
 </script>

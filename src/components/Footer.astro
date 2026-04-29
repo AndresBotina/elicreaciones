@@ -5,8 +5,7 @@ import { CONFIG } from '../config.js';
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__brand">
-      <a href="/" class="footer__logo">{CONFIG.site.name}</a>
-      <p class="footer__tagline">Hecho a mano en Mocoa, Colombia</p>
+      <p class="footer__tagline">Hecho a mano en Mocoa, Putumayo, Colombia,<br/>con amor, tradición y dedicación en cada puntada.</p>
     </div>
 
     <nav class="footer__nav" aria-label="Navegación del pie de página">
@@ -58,7 +57,8 @@ import { CONFIG } from '../config.js';
   .footer {
     background-color: var(--color-accent);
     color: var(--color-light);
-    margin-top: var(--space-24);
+    margin-top: var(--space-6);
+    border-radius: 60px 60px 0 0;
   }
 
   .footer__inner {
@@ -80,8 +80,8 @@ import { CONFIG } from '../config.js';
 
   .footer__tagline {
     font-family: var(--font-handwritten);
-    font-size: var(--text-base);
-    color: var(--color-mid);
+    font-size: var(--text-3xl);
+    color: var(--color-base);
   }
 
   .footer__nav-list {
@@ -92,13 +92,14 @@ import { CONFIG } from '../config.js';
   }
 
   .footer__nav-link {
-    font-size: var(--text-sm);
-    color: var(--color-light);
+    font-family: var(--font-handwritten);
+    font-size: var(--text-lg);
+    color: var(--color-base);
     transition: color 0.2s;
   }
 
   .footer__nav-link:hover {
-    color: var(--color-accent);
+    color: var(--color-light);
   }
 
   .footer__social {
@@ -108,13 +109,14 @@ import { CONFIG } from '../config.js';
   }
 
   .footer__social-link {
-    font-size: var(--text-sm);
-    color: var(--color-light);
+    font-family: var(--font-handwritten);
+    font-size: var(--text-lg);
+    color: var(--color-base);
     transition: color 0.2s;
   }
 
   .footer__social-link:hover {
-    color: var(--color-accent);
+    color: var(--color-light);
   }
 
   .footer__bottom {
@@ -132,10 +134,13 @@ import { CONFIG } from '../config.js';
     .footer__inner {
       grid-template-columns: 1fr;
       gap: var(--space-8);
+      text-align: center;
+      justify-items: center;
     }
 
     .footer__social {
       flex-direction: row;
+      justify-content: center;
       gap: var(--space-6);
     }
   }

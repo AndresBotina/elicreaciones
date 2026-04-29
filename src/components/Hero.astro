@@ -1,29 +1,27 @@
 ---
-import WhatsAppButton from './WhatsAppButton.astro';
 ---
 
 <section class="hero">
   <div class="container hero__inner">
     <div class="hero__content">
       <p class="hero__eyebrow">Hecho a mano en Mocoa, Colombia</p>
-      <h1 class="hero__title">Cada puntada cuenta una historia</h1>
+      <h1 class="hero__title">Cada <em>puntada</em> cuenta una historia</h1>
       <p class="hero__subtitle">
-        Piezas únicas a crochet hechas con dedicación y amor. Bolsos, llaveros, blusas, moñas y mucho más.
+        Piezas únicas tejidas a crochet con dedicación, paciencia y mucho amor. Cada diseño nace de la inspiración, de nuestras raíces y del deseo de crear algo especial que no solo se vea bonito, sino que también se sienta auténtico y lleno de significado.
       </p>
       <div class="hero__actions">
         <a href="/catalogo" class="btn btn-primary">
-          Ver catálogo →
+          Explorar
         </a>
-        <WhatsAppButton label="Pedir por WhatsApp" />
       </div>
     </div>
     <div class="hero__image">
-      <div class="hero__image-placeholder" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="120" height="120" fill="var(--color-mid)" aria-hidden="true">
-          <path d="M100 30 C65 30, 40 55, 40 90 C40 125, 65 150, 100 150 C135 150, 160 125, 160 90 C160 55, 135 30, 100 30 Z M85 75 C85 67, 92 60, 100 60 C108 60, 115 67, 115 75 C115 83, 108 90, 100 90 C92 90, 85 83, 85 75 Z M60 130 C63 110, 80 98, 100 98 C120 98, 137 110, 140 130 C127 143, 114 150, 100 150 C86 150, 73 143, 60 130 Z"/>
-        </svg>
-        <span>Foto próximamente</span>
-      </div>
+      <img
+        src="/foto-hero.jpeg"
+        alt="Piezas a crochet hechas a mano — Eli Creaciones"
+        class="hero__image-placeholder"
+        loading="eager"
+      />
     </div>
   </div>
 </section>
@@ -31,8 +29,13 @@ import WhatsAppButton from './WhatsAppButton.astro';
 <style>
   .hero {
     padding-block: var(--space-24);
-    background-color: var(--bg);
+    background-color: #F5E4DE;
     overflow: hidden;
+    border-radius: 60px;
+    margin-top: var(--space-24);
+    margin-inline: auto;
+    width: calc(100% - var(--space-8));
+    max-width: 1400px;
   }
 
   .hero__inner {
@@ -40,6 +43,13 @@ import WhatsAppButton from './WhatsAppButton.astro';
     grid-template-columns: 1fr 1fr;
     gap: var(--space-16);
     align-items: center;
+  }
+
+  @media (min-width: 769px) {
+    .hero__inner {
+      padding-left: var(--space-16);
+      padding-right: 0;
+    }
   }
 
   .hero__eyebrow {
@@ -83,15 +93,9 @@ import WhatsAppButton from './WhatsAppButton.astro';
     width: 100%;
     aspect-ratio: 4 / 5;
     max-width: 420px;
-    background-color: var(--color-light);
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-4);
-    color: var(--text-muted);
-    font-size: var(--text-sm);
+    border-radius: 48px;
+    display: block;
+    object-fit: cover;
   }
 
   @media (max-width: 768px) {
@@ -112,9 +116,21 @@ import WhatsAppButton from './WhatsAppButton.astro';
       order: -1;
     }
 
+    .hero__content {
+      text-align: center;
+    }
+
+    .hero__subtitle {
+      margin-inline: auto;
+    }
+
+    .hero__actions {
+      justify-content: center;
+    }
+
     .hero__image-placeholder {
       max-width: 100%;
-      aspect-ratio: 3 / 2;
+      aspect-ratio: auto;
     }
   }
 </style>

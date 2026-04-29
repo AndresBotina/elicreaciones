@@ -42,32 +42,33 @@ const href = `https://wa.me/${CONFIG.whatsapp.number.replace(/\D/g, '')}?text=${
 <style>
   .whatsapp-floating {
     position: fixed;
-    bottom: var(--space-8);
-    right: var(--space-8);
+    bottom: var(--space-6);
+    right: var(--space-6);
     z-index: 200;
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    background-color: #25D366;
+    background-color: #43a047;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(67, 160, 71, 0.35);
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
   }
 
   .whatsapp-floating:hover {
-    transform: scale(1.08);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+    background-color: #388e3c;
+    transform: scale(1.06);
+    box-shadow: 0 6px 16px rgba(67, 160, 71, 0.45);
   }
 
   @media (max-width: 768px) {
     .whatsapp-floating {
-      bottom: var(--space-6);
-      right: var(--space-6);
-      width: 52px;
-      height: 52px;
+      bottom: var(--space-4);
+      right: var(--space-4);
+      width: 42px;
+      height: 42px;
     }
   }
 </style>

@@ -1,0 +1,197 @@
+---
+import { CONFIG } from '../config.js';
+
+const { productos } = Astro.props;
+
+// Tomamos solo los primeros 4 productos destacados para el collage
+const collageProducts = productos.slice(0, 4);
+---
+
+<section class="fm reveal" aria-label="Productos destacados">
+  <div class="container">
+    <div class="fm__layout">
+
+      <!-- LEFT: Aesthetic Collage -->
+      <div class="fm__collage-wrap">
+        <div class="fm__collage">
+          {collageProducts.map((p, i) => {
+            const img = p.imagenes?.[0];
+            return (
+              <article class={`fm-item fm-item--${i + 1}`}>
+                <div class="fm-item__img-wrap">
+                  {img ? (
+                    <img src={img} alt={p.nombre} class="fm-item__img" loading="lazy" />
+                  ) : (
+                    <div class="fm-item__placeholder">
+                      <span>{p.nombre}</span>
+                    </div>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- RIGHT: editorial -->
+      <aside class="fm__editorial">
+        <div class="fm__ed-inner">
+          <h2 class="fm__ed-title">Piezas únicas, <em>tejidas con amor</em></h2>
+          <p class="fm__ed-text">Desde el corazón de Mocoa, transformamos hilos de alta calidad en piezas únicas, tejidas con la dedicación y el alma de nuestra tierra.</p>
+          <a href="/catalogo" class="btn btn-primary fm__ed-cta">Explorar</a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .fm { padding-block: var(--space-24); }
+
+  .fm__layout {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: var(--space-24);
+    align-items: center; /* Alineado al centro para que el collage cuadrado luzca mejor */
+  }
+
+  /* Collage System */
+  .fm__collage-wrap {
+    width: 100%;
+    max-width: 500px; /* Reducido para un aspecto más delicado */
+    margin-inline: auto;
+  }
+
+  .fm__collage {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    aspect-ratio: 1.2 / 1; /* Más ancho que alto */
+    gap: var(--space-4);
+  }
+
+  .fm-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 48px; /* Border radius muy pronunciado */
+    background: #E89BA3; /* Color solicitado */
+  }
+
+  /* 1) Foto cuadrada grande (2/3 del ancho y alto) */
+  .fm-item--1 {
+    grid-area: 1 / 1 / 3 / 3;
+  }
+
+  /* 2) Foto vertical alta y delgada (1/3 ancho, todo el alto) */
+  .fm-item--2 {
+    grid-area: 1 / 3 / 4 / 4;
+  }
+
+  /* 3) Foto pequeña (1/3 de la zona inferior restante, que es 1/3 del total) */
+  .fm-item--3 {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+
+  /* 4) Foto horizontal alargada (2/3 de la zona inferior restante, que es 2/3 del total) */
+  .fm-item--4 {
+    grid-area: 3 / 2 / 4 / 3;
+  }
+
+  .fm-item__img-wrap {
+    width: 100%;
+    height: 100%;
+  }
+
+  .fm-item__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .fm-item:hover .fm-item__img {
+    transform: scale(1.05);
+  }
+
+  .fm-item__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+  }
+
+  /* Editorial */
+  .fm__editorial {
+    position: sticky;
+    top: 100px;
+  }
+
+  .fm__ed-inner {
+    position: relative;
+    padding: var(--space-4) 0;
+  }
+
+
+
+  .fm__ed-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-5xl);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: var(--space-16);
+  }
+
+  .fm__ed-title em {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  .fm__ed-title em {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  .fm__ed-text {
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: var(--space-16);
+    max-width: 480px;
+  }
+
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .fm__layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+    }
+    .fm__editorial {
+      position: static;
+      order: -1;
+      text-align: center;
+    }
+    .fm__ed-text {
+      margin-inline: auto;
+    }
+    .fm__ed-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .fm__collage-wrap {
+      max-width: 100%;
+    }
+  }
+</style>

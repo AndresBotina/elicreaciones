@@ -9,82 +9,82 @@ import { CONFIG } from '../config.js';
   description="Contáctanos por WhatsApp para pedidos y personalizaciones. Enviamos a todo Colombia. Aceptamos Nequi, Daviplata, Bancolombia y efectivo."
 >
   <div class="contacto-page">
-    <div class="container">
-      <header class="contacto-page__header">
-        <h1 class="contacto-page__title">Hablemos</h1>
-        <p class="contacto-page__subtitle">
-          ¿Quieres una pieza personalizada o tienes alguna pregunta? Escríbenos por WhatsApp y con gusto te atendemos.
-        </p>
-      </header>
+    <div class="contacto-page__banner">
+      <div class="container reveal">
+        <header class="contacto-page__header reveal">
+          <h1 class="contacto-page__title">Hablemos</h1>
+          <p class="contacto-page__subtitle">
+            ¿Quieres una pieza personalizada o tienes alguna pregunta? Escríbenos por WhatsApp y con gusto te atendemos.
+          </p>
+        </header>
 
-      <div class="contacto-page__grid">
-        <div class="contacto-page__info">
-          <div class="contacto-page__whatsapp">
-            <WhatsAppButton label="Escribir por WhatsApp" />
+        <div class="contacto-page__grid reveal">
+          <div class="contacto-page__info">
+            <div class="contact-details">
+              <div class="contact-details__item">
+                <span class="contact-details__label">WhatsApp</span>
+                <a href={`https://wa.me/${CONFIG.whatsapp.number.replace(/\D/g, '')}`} class="contact-details__value" target="_blank" rel="noopener noreferrer">
+                  {CONFIG.whatsapp.number}
+                </a>
+              </div>
+              <div class="contact-details__item">
+                <span class="contact-details__label">Envíos</span>
+                <span class="contact-details__value">A todo Colombia</span>
+              </div>
+              <div class="contact-details__item">
+                <span class="contact-details__label">Pagos</span>
+                <span class="contact-details__value">Nequi, Daviplata, Bancolombia y efectivo</span>
+              </div>
+            </div>
+
+            <div class="contacto-page__social">
+              <p class="contacto-page__social-label">También puedes encontrarnos en</p>
+              <div class="contacto-page__social-links">
+                <a href={CONFIG.social.instagram} target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Instagram de Eli Creaciones">
+                  Instagram
+                </a>
+                <a href={CONFIG.social.facebook} target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Facebook de Eli Creaciones">
+                  Facebook
+                </a>
+                <a href={CONFIG.social.tiktok} target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="TikTok de Eli Creaciones">
+                  TikTok
+                </a>
+              </div>
+            </div>
           </div>
 
-          <div class="contact-details">
-            <div class="contact-details__item">
-              <span class="contact-details__label">WhatsApp</span>
-              <a href={`https://wa.me/${CONFIG.whatsapp.number.replace(/\D/g, '')}`} class="contact-details__value" target="_blank" rel="noopener noreferrer">
-                {CONFIG.whatsapp.number}
-              </a>
-            </div>
-            <div class="contact-details__item">
-              <span class="contact-details__label">Envíos</span>
-              <span class="contact-details__value">A todo Colombia</span>
-            </div>
-            <div class="contact-details__item">
-              <span class="contact-details__label">Pagos</span>
-              <span class="contact-details__value">Nequi, Daviplata, Bancolombia y efectivo</span>
+          <div class="contacto-page__form-wrapper">
+            <div class="contacto-page__form">
+              <h2 class="contacto-page__form-title">Envíanos un mensaje</h2>
+              <form action="https://formspree.io/f/placeholder" method="POST" class="contact-form">
+                <div class="contact-form__group">
+                  <label for="nombre" class="contact-form__label">Tu nombre</label>
+                  <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    class="contact-form__input"
+                    placeholder="Ej: María García"
+                    required
+                  />
+                </div>
+                <div class="contact-form__group">
+                  <label for="mensaje" class="contact-form__label">Mensaje</label>
+                  <textarea
+                    id="mensaje"
+                    name="mensaje"
+                    class="contact-form__textarea"
+                    rows="5"
+                    placeholder="Cuéntanos en qué te podemos ayudar..."
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary contact-form__submit">
+                  Enviar mensaje
+                </button>
+              </form>
             </div>
           </div>
-
-          <div class="contacto-page__social">
-            <p class="contacto-page__social-label">También puedes encontrarnos en</p>
-            <div class="contacto-page__social-links">
-              <a href={CONFIG.social.instagram} target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Instagram de Eli Creaciones">
-                Instagram
-              </a>
-              <a href={CONFIG.social.facebook} target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Facebook de Eli Creaciones">
-                Facebook
-              </a>
-              <a href={CONFIG.social.tiktok} target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="TikTok de Eli Creaciones">
-                TikTok
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="contacto-page__form">
-          <h2 class="contacto-page__form-title">Envíanos un mensaje</h2>
-          <form action="https://formspree.io/f/placeholder" method="POST" class="contact-form">
-            <div class="contact-form__group">
-              <label for="nombre" class="contact-form__label">Tu nombre</label>
-              <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                class="contact-form__input"
-                placeholder="Ej: María García"
-                required
-              />
-            </div>
-            <div class="contact-form__group">
-              <label for="mensaje" class="contact-form__label">Mensaje</label>
-              <textarea
-                id="mensaje"
-                name="mensaje"
-                class="contact-form__textarea"
-                rows="5"
-                placeholder="Cuéntanos en qué te podemos ayudar..."
-                required
-              ></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary contact-form__submit">
-              Enviar mensaje
-            </button>
-          </form>
         </div>
       </div>
     </div>
@@ -94,17 +94,23 @@ import { CONFIG } from '../config.js';
 </BaseLayout>
 
 <style>
-  .contacto-page {
-    padding-block: var(--space-16);
+  .contacto-page__banner {
+    background-color: #F5E4DE;
+    padding-top: var(--space-24);
+    padding-bottom: var(--space-16);
+    padding-inline: var(--space-6);
+    border-radius: 60px;
+    margin-top: var(--space-24);
+    margin-bottom: var(--space-16);
   }
 
   .contacto-page__header {
     text-align: center;
-    margin-bottom: var(--space-16);
+    margin-bottom: var(--space-12);
   }
 
   .contacto-page__title {
-    font-size: var(--text-4xl);
+    font-size: var(--text-5xl);
     font-weight: 700;
     margin-bottom: var(--space-4);
   }
@@ -121,18 +127,14 @@ import { CONFIG } from '../config.js';
     grid-template-columns: 1fr 1fr;
     gap: var(--space-16);
     align-items: start;
-    max-width: 900px;
+    max-width: 1000px;
     margin-inline: auto;
-  }
-
-  .contacto-page__whatsapp {
-    margin-bottom: var(--space-8);
   }
 
   .contact-details {
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
+    gap: var(--space-6);
     margin-bottom: var(--space-8);
   }
 
@@ -151,7 +153,7 @@ import { CONFIG } from '../config.js';
   }
 
   .contact-details__value {
-    font-size: var(--text-base);
+    font-size: var(--text-lg);
     color: var(--text);
     font-weight: 500;
   }
@@ -188,9 +190,17 @@ import { CONFIG } from '../config.js';
     color: white;
   }
 
+  .contacto-page__form {
+    background-color: white;
+    padding: var(--space-8);
+    border-radius: 32px;
+    box-shadow: 0 10px 30px rgba(107, 53, 71, 0.05);
+  }
+
   .contacto-page__form-title {
     font-size: var(--text-2xl);
     margin-bottom: var(--space-6);
+    color: var(--text);
   }
 
   .contact-form {
@@ -214,12 +224,12 @@ import { CONFIG } from '../config.js';
   .contact-form__input,
   .contact-form__textarea {
     border: 1.5px solid var(--color-light);
-    border-radius: 8px;
+    border-radius: 12px;
     padding: var(--space-3) var(--space-4);
     font-family: var(--font-body);
     font-size: var(--text-base);
     color: var(--text);
-    background-color: white;
+    background-color: #FDF4F0;
     transition: border-color 0.2s;
     resize: vertical;
   }
@@ -242,6 +252,27 @@ import { CONFIG } from '../config.js';
 
     .contacto-page__title {
       font-size: var(--text-3xl);
+    }
+
+    .contact-details__item {
+      align-items: center;
+      text-align: center;
+    }
+
+    .contacto-page__social-label {
+      text-align: center;
+    }
+
+    .contacto-page__social-links {
+      justify-content: center;
+    }
+
+    .contact-form__submit {
+      align-self: center;
+    }
+    
+    .contacto-page__banner {
+      border-radius: 40px;
     }
   }
 </style>

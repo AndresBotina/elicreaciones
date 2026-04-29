@@ -1,0 +1,124 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  image: string;
+  imageAlt: string;
+  ctaText?: string;
+  ctaHref?: string;
+  reversed?: boolean;
+}
+
+const { 
+  title, 
+  subtitle, 
+  image, 
+  imageAlt, 
+  ctaText, 
+  ctaHref, 
+  reversed = false 
+} = Astro.props;
+---
+
+<section class:list={["promo-section", { "promo-section--reversed": reversed }]}>
+  <div class="container promo-section__inner">
+    <div class="promo-section__content">
+      <h2 class="promo-section__title" set:html={title}></h2>
+      <p class="promo-section__subtitle">{subtitle}</p>
+      {ctaText && ctaHref && (
+        <div class="promo-section__actions">
+          <a href={ctaHref} class="btn btn-primary">
+            {ctaText}
+          </a>
+        </div>
+      )}
+    </div>
+    <div class="promo-section__image">
+      <img
+        src={image}
+        alt={imageAlt}
+        class="promo-section__img"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .promo-section {
+    padding-block: var(--space-24);
+    background-color: #F5E4DE;
+    overflow: hidden;
+    border-radius: 60px;
+    margin-block: var(--space-24);
+    margin-inline: auto;
+    width: calc(100% - var(--space-8));
+    max-width: 1400px;
+  }
+
+  .promo-section--reversed .promo-section__content {
+    order: 2;
+  }
+  
+  .promo-section--reversed .promo-section__image {
+    order: 1;
+  }
+
+  .promo-section__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: center;
+    padding-inline: var(--space-16);
+  }
+
+  .promo-section__title {
+    font-size: var(--text-5xl);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: var(--space-6);
+  }
+
+  .promo-section__subtitle {
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: var(--space-8);
+  }
+
+  .promo-section__img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 48px;
+    object-fit: cover;
+    object-position: center 60%;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  }
+
+  @media (max-width: 768px) {
+    .promo-section {
+      padding-block: var(--space-12);
+      border-radius: 40px;
+    }
+
+    .promo-section__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      padding-inline: var(--space-8);
+      text-align: center;
+    }
+
+    .promo-section--reversed .promo-section__inner {
+      direction: ltr;
+    }
+
+    .promo-section__image {
+      order: -1;
+    }
+
+    .promo-section__title {
+      font-size: var(--text-3xl);
+    }
+  }
+</style>
