@@ -1,6 +1,4 @@
 ---
-import WhatsAppButton from './WhatsAppButton.astro';
-
 interface Producto {
   id: string;
   nombre: string;
@@ -25,6 +23,8 @@ const precio = new Intl.NumberFormat('es-CO', {
 const whatsappMessage = encodeURIComponent(
   `¡Hola! Vi tu página web y me interesa el/la ${producto.nombre}. ¿Está disponible?`
 );
+
+const waUrl = `https://wa.me/573142501765?text=${whatsappMessage}`;
 ---
 
 <article class="product-card">
@@ -53,11 +53,18 @@ const whatsappMessage = encodeURIComponent(
     {!producto.disponible && (
       <div class="product-card__badge">No disponible</div>
     )}
-
+    {producto.disponible && (
+      <a
+        href={waUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="product-card__image-link"
+        aria-label={`Pedir ${producto.nombre} por WhatsApp`}
+      ></a>
+    )}
     <div class="product-card__footer">
-      <p class="product-card__price">{precio}</p>
       {producto.disponible ? (
-        <WhatsAppButton message={whatsappMessage} label="" />
+        <p class="product-card__price">{precio}</p>
       ) : (
         <p class="product-card__unavailable">Agotado</p>
       )}
@@ -65,7 +72,10 @@ const whatsappMessage = encodeURIComponent(
   </div>
 
   <div class="product-card__body">
-    <h3 class="product-card__name">{producto.nombre}</h3>
+    <div class="product-card__name-row">
+      <h3 class="product-card__name">{producto.nombre}</h3>
+      <p class="product-card__price-mobile">{precio}</p>
+    </div>
     <p class="product-card__description">{producto.descripcion}</p>
   </div>
 </article>
