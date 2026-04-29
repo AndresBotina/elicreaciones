@@ -1,4 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="8" fill="#4A5D47"/>
-  <text x="16" y="22" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#D4A574">E</text>
+  <!-- 5 pétalos, cada uno rotado 72° -->
+  <ellipse cx="16" cy="9" rx="3.5" ry="6.5" fill="#FFD600" transform="rotate(0 16 16)"/>
+  <ellipse cx="16" cy="9" rx="3.5" ry="6.5" fill="#FFD600" transform="rotate(72 16 16)"/>
+  <ellipse cx="16" cy="9" rx="3.5" ry="6.5" fill="#FFD600" transform="rotate(144 16 16)"/>
+  <ellipse cx="16" cy="9" rx="3.5" ry="6.5" fill="#FFD600" transform="rotate(216 16 16)"/>
+  <ellipse cx="16" cy="9" rx="3.5" ry="6.5" fill="#FFD600" transform="rotate(288 16 16)"/>
+  <!-- Centro -->
+  <circle cx="16" cy="16" r="4" fill="#FFA000"/>
 </svg>
