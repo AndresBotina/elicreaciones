@@ -81,12 +81,31 @@ import WhatsAppButton from '../components/WhatsAppButton.astro';
     align-items: center;
   }
 
+  .nosotras-page__image {
+    position: relative;
+    padding: 10px;
+  }
+
+  .nosotras-page__image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px dashed var(--color-accent);
+    border-radius: 95px;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
   .nosotras-page__image-placeholder {
     width: 100%;
     aspect-ratio: 3 / 4;
-    border-radius: 32px;
+    border-radius: 80px;
     display: block;
     object-fit: cover;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
   }
 
   .nosotras-page__title {
