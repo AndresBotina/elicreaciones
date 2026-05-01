@@ -196,11 +196,11 @@ const categorias = [
         ? `<a href="https://wa.me/${waNumber}?text=${whatsappMsg}" target="_blank" rel="noopener noreferrer" class="product-card__image-link" aria-label="Pedir ${p.nombre} por WhatsApp"></a>`
         : '';
 
-      const footerContent = p.disponible
-        ? `<p class="product-card__price">${precio}</p>`
-        : `<p class="product-card__unavailable">Agotado</p>`;
+      const footerContent = !p.disponible
+        ? `<p class="product-card__unavailable">Agotado</p>`
+        : '';
 
-      return `<li><article class="product-card"><div class="product-card__image-wrapper">${collageHtml}${badgeHtml}${imageLinkHtml}<div class="product-card__footer">${footerContent}</div></div><div class="product-card__body"><div class="product-card__name-row"><h3 class="product-card__name">${p.nombre}</h3><p class="product-card__price-mobile">${precio}</p></div><p class="product-card__description">${p.descripcion}</p></div></article></li>`;
+      return `<li><article class="product-card"><div class="product-card__image-wrapper">${collageHtml}${badgeHtml}${imageLinkHtml}<div class="product-card__footer">${footerContent}</div></div><div class="product-card__body"><div class="product-card__name-row"><h3 class="product-card__name">${p.nombre}</h3></div><p class="product-card__description">${p.descripcion}</p></div></article></li>`;
     }).join('');
 
     grid.innerHTML = `<ul class="product-grid" role="list">${items}</ul>`;

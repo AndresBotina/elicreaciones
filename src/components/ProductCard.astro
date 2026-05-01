@@ -63,9 +63,7 @@ const waUrl = `https://wa.me/573142501765?text=${whatsappMessage}`;
       ></a>
     )}
     <div class="product-card__footer">
-      {producto.disponible ? (
-        <p class="product-card__price">{precio}</p>
-      ) : (
+      {!producto.disponible && (
         <p class="product-card__unavailable">Agotado</p>
       )}
     </div>
@@ -74,7 +72,6 @@ const waUrl = `https://wa.me/573142501765?text=${whatsappMessage}`;
   <div class="product-card__body">
     <div class="product-card__name-row">
       <h3 class="product-card__name">{producto.nombre}</h3>
-      <p class="product-card__price-mobile">{precio}</p>
     </div>
     <p class="product-card__description">{producto.descripcion}</p>
   </div>
